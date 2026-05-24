@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Centro PC</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+    .menuinicio{
+        position: relative;
+        display: inline-block;
+    }
+    .menuinicio:hover .submenus{
+        display: flex;
+    }
+    .submenus{
+        position: absolute;
+        left: 0;
+        background-color: darkslateblue;
+        flex-direction: column;
+        top: 100%;
+        border-radius: 20px;
+        margin-top: 0;
+        font-size: 15px;
+        text-align: center;
+        color: beige;
+        display: none;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border: 1px solid indigo;
+        z-index: 1;
+    }
+    .submenus a {
+        color: white;
+    }
+    body{
+        background-color: rgb(5, 23, 37);
+        color: white;
+    }
+    .textocentrado{
+        text-align: center;
+    }
+    .menu{
+        position: relative;
+        background-color: purple;    
+        text-align: center;
+        font-style: italic;
+        size: 10px;
+        color: red;
+        padding: 20px 0;
+        font-size: 20px;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+        margin: 0 15px;
+    }
+    .InicioTitulo{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 150px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        color: beige;
+        text-align: center;
+    }
+    .InicioTexto{
+        font-family: Arial, Helvetica, sans-serif;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .TextoresumidoInicio{
+        text-align: center;
+        font-size: 90px;
+        padding-top: 20px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    .productos{
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 20px;
+    }
+    .Tituloproductos{
+        background-color: rgb(5, 23, 37);
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 30px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        color: beige;
+        text-align: center;
+    }
+    .grid-productos{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .producto{
+        border: 1px black;
+        width: 200px;
+        padding: 10px;
+        text-align: center;
+    }
+    .Ventajas{
+        text-align: center;
+        background-color: rgb(200, 220, 240);
+        color: black;
+        padding: 35px;
+    }
+    .Desventajas{
+        text-align: center;
+        background-color: rgb(200, 220, 240);
+        color: black;
+        padding: 35px;
+    }
+    .VentajasyDesventajasbox{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 30px;
+    }
+    /*Imagendenavegación*/
+    .logo{
+        position: absolute;
+        left: 20px;
+        width: 100px;
+        height: 65px;
+        bottom: 0px;
+        top: 0px;
+        object-fit: contain;   /*Para que no se deforme la foto con las otras cosas*/
+        border-radius: 50%;
+
+    }
+    .iconocarrito{
+        position: absolute;
+        right: 20px;
+        top: auto;
+        width: 100px;
+        height: 85px;
+        object-fit: contain;
+        bottom: -10px;
+    }
+
+    /*Productos*/
+    .imagenproducto img{
+        width: 900px;
+        height: 750px;
+        object-fit: contain;
+    }
+    .informacionproducto{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .preciosproductos{
+        color: green;
+        font-size: x-large;
+    }
+    .targetaproductocompleta{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 40px;
+    }
+
+
+    
+    /*Muro de comentarios*/
+    #recuadrodecomentario{
+        height: 150px;
+        width: 68%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        max-height: 150px;
+        max-width: 68%;
+        background-color: darkblue;
+        border: purple 2px;
+        border-radius: 8px;
+        color: white;
+        padding: 10px;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: left;
+    }
+    .botoncomentario{
+        width: 100%;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+        background-color: darkslateblue;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .mensajechat{
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        gap: 10px;
+        font-size: 15px;
+    }
+    .avatar{
+        width: 40px;
+        height: 40px;
+        background-color: blue;
+        border-radius: 50%;
+    }
+    .recuadro{
+        background-color: darkslateblue;
+        color: white;
+        padding: 10px 15px;
+        max-width: 70%;
+        border-radius: 18px;
+    }
+    /*Productos*/
+    .TituloCategoria{
+        width: 100%;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        margin: 20px;
+        font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+       
+    }
+
+
+    /*Plantillas de fondo*/
+    .plantillatech{
+        background-image: url(https://images.unsplash.com/photo-1631914730551-1cfbcdf6f603?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+        backdrop-filter: blur(5px);
+        
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        padding-bottom: 20px;
+        padding-top: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        object-fit: contain;
+    }
+    .plantillamec{
+        background-image: url(https://www.shutterstock.com/image-vector/seamless-electric-technology-circuitry-on-600nw-2730635771.jpg);
+        background-position: center;
+        padding-bottom: 20px;
+        padding-top: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+        object-fit: contain;
+        backdrop-filter: blur(5px);
+    }
+    .plantillalowpoly{
+         background-image: url(https://static.vecteezy.com/system/resources/previews/001/225/154/non_2x/black-low-poly-geometric-background-vector.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding-bottom: auto;
+        padding-top: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        object-fit: contain;
+        backdrop-filter: blur(5px);
+    }
+
+
+    /*Carrito*/
+    /*Pensé que asi debería de estar cerrado con -450 para que est completamente oculto, y luego este abierto*/
+    .carritobonito{
+        top: 0;
+        position: fixed;
+        right: -1000px;
+        width: 700px;
+        height: 100%;
+        background-color: antiquewhite;
+        transition: 0.5s;
+        padding: 20px;
+        color: black;
+    }
+    /*Así estaria abierto y con el transition queda mas chulo*/
+    .carritobonito.activo{
+        right: 0px;
+    }
+    .LaXdecierre{
+        float: right;
+        background: none;
+        border: none;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .botonborrarproducto{
+        background-color: lightcoral;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px;
+        font-weight: bold;
+    }
+    .itemcarrito{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: white;
+        border-bottom: 1px lightgray;
+        border-radius: 8px;
+    }
+    .itemcarrito img{
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+    }
+    #numproductos{
+        position: absolute;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        bottom: -3px;
+        right: 35px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        font-size: 10px;
+        font-weight: bold;
+        border: white 2px;
+        align-items: center;
+        justify-content: center;
+    }
+    .botonpagar{
+        background-color: greenyellow;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        font-weight: bold;
+        border-radius: 5px;
+        margin-top: 10px;
+        height: 50px;
+        display: block;
+    }
+    
+    /*Sobre Nsotros*/
+    .Sobrenosotrostotal{
+        text-align: center;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 37px;
+        margin-bottom: 38px;
+    }
+    .titulosobrenosotros{
+        font-size: 55px;
+        padding: 10px;
+        color: aliceblue;
+    }
+    .textosobrenosotros{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        padding: 25px;
+        font-size: 30px;
+    }
+    .subtitulosobrenosotros{
+        font-size: 20px;
+        color: lightslategray;
+        font-weight: bold;
+    }
+    .cajasdeinfo{
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .cajadeinfo{
+        background-color: darkblue;
+        border: aqua 2px;
+        border-radius: 10px;
+        padding: 25px;
+        text-align: center;
+        width: 350px;
+    }
+    .fotoobjetivo{
+        max-width: 250px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+    .fotoservicios{
+        max-width: 250px;
+        width: 100px;
+        height: 100px;
+    }
+    .cajadeinfo h2{
+        color: aqua;
+        font-size: 23px;
+        margin-top: 0px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .listaservicios{
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 25px;
+        font-size: 25px;
+        list-style: none;
+        text-align: center;
+        letter-spacing: 5px;
+        margin-bottom: 15px;
+    }
+    /*ChatBot*/
+    .secciónchatbot{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: darkslategray;
+        padding: 40px;
+        padding-top: 50px;
+        min-height: 1145px;
+    }
+    .espaciochatbot{
+        width: 100%;
+        max-width: 1100px;
+        height: 100%;
+        background-color: black;
+        border-radius: 20px;
+        border: aqua 1px;
+        overflow: hidden;
+        
+    }
+
+    /*Muro Antibots*/
+    /*Ahora quiero hacer lo mismo que con el ticket de los pedidos*/
+    .bloqseguridad{
+        justify-content: center;
+        align-items: center;
+        min-height: 100px;
+        min-width: 120px;
+        margin-top: 100px;
+        margin-left: 900px;
+        margin-right: 900px;
+        background-color: white;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        padding: 19px;
+        box-sizing: border-box;
+    }
+    /*Y ahora hago cada bloque por separado para que quede mas limpio y no todo de la misma forma*/
+    .bloqseguridad h2{
+        font-size: 60px;
+        color: black;
+        margin: 12px;
+        font-weight: 700;
+        text-align: center;
+    }
+    .bloqseguridad p{
+        font-size: 40px;
+        color: grey;
+        margin: 24px;
+        line-height: 1.5;
+        text-align: center;
+    }
+    #botonverificar{
+        background-color: blue;
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-align: center;
+        display: block;
+        margin-left: 290px;
+        margin-right: auto;
+    }
+    .elrecaptcha{
+        margin-bottom: 15px;
+    }
+    #lachistera{
+       display: none;
+    }
+
+
+    /*El log In*/
+    .login-card {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #e8e8e8;
+        box-shadow: 2px 2px 10px #ccc;
+        margin-top: 40px;
+    }
+
+    .card-header {
+        text-align: center;
+        margin-bottom: 20px
+    }
+
+    .card-header .log {
+        margin: 0;
+        font-size: 24px;
+        color: black;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        transition: 0.5s;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        background-color: #333;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }  
+
+    input[type="submit"]:hover {
+        background-color: #ccc;
+        color: black;
+    }
+
+    </style>
+</head>
+<body>
+
+    <!--Control de seguridad-->
+    <!--En este control, vamos ha hacer un clasico pero muy efectivo, en efecto estamos hablando de el muro de seguridad, este muro nos ayuda a rechazar facilmente, los bots maliciosos, que desean corromper la web.-->
+    
+    <div id="bloqueodeseguridad" class="bloqseguridad">
+        <h2>Control de Seguridad Centro PC</h2>
+        <p>Por favor, verifica que eres una persona antes de entrar a la tienda.</p>
+        <div class="elrecaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqy9H71UMIEGNQ_MXjiZKhI"></div>
+            <br>
+            <button id="botonverificar" onclick="verificarsieshumano()">Entrar a la web</button>
+        
+
+        <div class="login-card">
+            <div class="card-header">
+                <div class="log">Registro</div>
+                <p style="font-size:20px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Para más seguridad, le aconsejamos que inicie sesión, solo ingresa tu nombre y contraseña, y pulse una vez en el botón Registrarse</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="username" style="color:black;">Nombre:</label>
+                    <input required="" name="username" id="username" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="password" style="color:black;">Contraseña:</label>
+                    <input required="" name="password" id="password" type="password">
+                </div>
+                <div class="form-group">
+                    <input value="Registrarse" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div id="lachistera">
+    <!--Indice-->
+    <div class="menu">
+            <img src="Gemini_Generated_Image_bxyzowbxyzowbxyz.png" class="logo" alt="LOGO EMPRESA CREADO POR IA">
+
+
+
+        <div onclick="interruptorcarrito()">
+
+            <img src="image-removebg-preview.png" class="iconocarrito" alt="Carrito de la compra" id="fotocarrito">
+            <!--Para poner un numerito que siempre queda bien en todas las páginas web y yo quiero intentarlo tambien, ademas de añadir una función abajo en actuazar el carrito-->  
+            <span id="numproductos">0</span>
+        </div>
+
+        <div class="menuinicio">
+            <a href="#Inicio" onclick="mostrarSeccion('Inicio')">Inicio</a>
+            <div class="submenus">
+                <a href="#¿Por que nosotros?">¿Por que nosotros?</a> <br>
+                <a href="#Ventajas y Desventajas de nuestra empresa">Ventajas y Desventajas</a>
+            </div>
+        </div>
+        <div class="menuinicio">
+            <a href="#Productos" onclick="mostrarSeccion('Productos')">Productos</a>
+            <div class="submenus">
+                <a href="#Almacenamiento">Almacenamiento</a> <br>
+                <a href="#Fundas">Fundas</a> <br>
+                <a href="#Componentes">Componentes</a> <br>
+                <a href="#Portatiles">Portatiles</a> <br>
+                <a href="#Camaras">Camaras</a> <br>
+                <a href="#Imagen/Sonido">Imagen y Sonido</a> <br>
+                <a href="#Ordenadores/Monitores">Ordenadores y Monitores</a> <br>
+                <a href="#Tablets/Smartphones">Tablets y Smartphones</a> <br>
+                <a href="#HogarTPV">Hogar TPV</a> <br>
+                <a href="#Redes">Redes</a> <br>
+                <a href="#Software">Software</a>
+            </div>
+        </div>
+        <div class="menuinicio">
+            <a href="#SobreNosotros" onclick="mostrarSeccion('SobreNosotros')">Sobre Nosotros</a>
+            <div class="submenus">
+                <a href="#NuestroObjetivo">Nuestro Objetivo</a> <br>
+                <a href="#ServiciosPrincipales">Servicios</a> <br>
+                <a href="#ReseñasyComentarios">Reseñas</a> <br>
+                <a href="#Tabladecomentarios">Tabla Comentarios</a>
+            </div>
+        </div>
+            <a href="#ChatBot" onclick="mostrarSeccion('ChatBot')">Chat Bot</a>
+    </div>
+
+
+   
+
+
+    <!--Contenidos por agrupar-->
+    <!--Inicio-->
+    <div id="Inicio" class="Apartados">
+        <div class="plantillatech">
+        <h1 class="InicioTitulo">Bienvenidos a Centro PC</h1>
+    <div class="InicioTexto">
+    <div class="TextoresumidoInicio">
+    <div class="textocentrado">
+        <p>En nuestra empresa nos basamos en la venta de productos informáticos y tecnológicos.</p>
+        <p>Nuestra función es implementar nuevos productos innovadores y de alta calidad con precios para todo el público.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+    <div class="plantillamec">
+    <div class="textocentrado">
+        <h2 id="¿Por que nosotros?" style="font-size: 50px;">¿Por qué nosotros?</h2>
+        <p style="font-size: 35px;">Porque somos <strong>n.º 1 en ventas en todo el municipio de Los Barrios</strong>, siendo asi que tenemos +150 ventas en el ultimo mes.</p>
+        <p style="font-size: 35px;">Además tenemos <strong>más de 100 productos actuales en stock</strong> con <strong>precios inigualables</strong>.</p>
+    </div>
+    </div>
+
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+   
+    <!--Ventajas y Desventajas de nuestra empresa-->    
+    <div class="plantillalowpoly">
+    <h2 id="Ventajas y Desventajas de nuestra empresa" style="font-size: 50px; text-align: center;">Ventajas y Desventajas de nuestra empresa.</h2>
+    <!--Ventajas-->
+    <div class="VentajasyDesventajasbox">
+    <div class="Ventajas">
+        <h2>Ventajas</h2>
+        <p>Trato al cliente <br>
+        Alto conocimiento tecnológico/informático <br>
+        Actualización continua de productos
+        </p>
+    </div>
+    <!--Desventajas-->
+    <div class="Desventajas">
+        <h2>Desventajas</h2>
+        <p>Alcance Limitado <br>
+        Stock Limitado
+        </p>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+    <!--Productos-->
+    <div id="Productos" class="Apartados">
+    <div class="Tituloproductos">
+    <h1>Productos</h1>
+    </div>
+    <div id="productos" class="grid-productos">
+        <div id="MisProductos"></div>
+    </div>
+    </div>
+    
+    <!--El Carrito-->
+    <!--Ahora aquí, toca hacer el carrito, que basicamente voy a poner una barra lateral para que sea muy sencillita visualmente y ademas va a funcionar con el clic de la foto del carrito.-->
+
+    <div id="Carrito" class="carritobonito">
+        <button onclick="interruptorcarrito()" class="LaXdecierre">X</button>
+
+        <h2>Mi Pedido</h2>
+
+        <div id="Lalistadeproductospedidos">
+            <p>Aún nos has añadido al carrito ningun producto, Por favor clickea en el boton (Añadir al Carrito), de la sección productos.</p>
+        </div>
+
+        <div class="Totaldepagar">
+            <p>Total: <span id="SumaTotal">0</span>€</p>
+            <button onclick="finalizarCompra()" class="botonpagar">Finalizar compra</button>
+        </div>
+    </div>
+
+
+
+
+
+    <!--Sobre Nosotros-->
+
+
+
+    <div id="SobreNosotros" class="Apartados">
+        <div class="Sobrenosotrostotal">
+            <h1 class="titulosobrenosotros">Aprende sobre nuestro trabajo</h1>
+            <p class="subtitulosobrenosotros">En Centro PC, somos un negocio local de Los Barrios, siempre pensamos y nos comprometemos en daros las mejores soluciones tecnológicas de la forma mas precisa y rápida posible, nuestra idea principal era ayudar a todo tipo de persona a resolver sus problemas tecnológicos e informáticos, con precios totalmente razonables para todo el público.</p>
+            <p class="textosobrenosotros">Contamos con más de 20 años de experiencia en todo tipo de reparaciones y asesoramiento personalizado. <br>
+            Nos encanta tratar a cada cliente de de forma directa y comprensiva, buscando siempre su beneficio, ademas explicando las posibles soluciones de manera clara y concisa.</p>
+    
+        <div class="cajasdeinfo">
+            <div class="cajadeinfo">
+                <img src="https://cdn-icons-gif.flaticon.com/16678/16678453.gif" alt="icono" class="fotoobjetivo">
+                <h2 id="NuestroObjetivo">NUESTRO <br> OBJETIVO</h2>
+                <p class="textosobrenosotros">Nuestro deseo es que la tecnología, no sea un problema, en cambio es la herramienta más útil en el día a día de una persona.</p>
+            </div>
+    
+            <div class="cajadeinfo">
+                <img src="https://i.pinimg.com/originals/89/50/5d/89505d16d932d8cca00011c78a54a69d.gif" alt="icono" class="fotoservicios">
+                <h2 id="ServiciosPrincipales">SERVICIOS PRINCIPALES</h2>
+                <ul class="listaservicios">
+                    <li>Reparación de ordenadores</li> <br>
+                    <li>Limpieza y Mantenimiento</li> <br>
+                    <li>Instalación de Software</li> <br>
+                    <li>Venta de Componentes</li> <br>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    <h1 id="ReseñasyComentarios" class="titulosobrenosotros">Reseñas y Comentarios</h1>
+    <p class="textosobrenosotros">Si quieres escribirnos tu opinión y que todos puedan saber tu punto de vista, por favor escríbenos en el recuadro de abajo tus Comentarios.</p>
+
+
+    <textarea id="recuadrodecomentario"></textarea>
+    <button onclick="ponerTexto()" class="botoncomentario">Enviar Comentario</button>
+
+
+    <h1 id="Tabladecomentarios">Tabla de Comentarios</h1>
+    <p>Aqui podras ver tus comentarios de esta empresa y su pagina web.</p>
+    <div id="MiMurito"></div>
+    </div>
+    </div>
+
+
+
+    <!--Chat Bot (AlejandrÍA)-->
+
+<div id="ChatBot" class="Apartados">
+    <div class="secciónchatbot">
+        <div class="espaciochatbot">
+            <script type="module" src="https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs"></script>
+            <div id="myLandbot" style="width: 100%; height: 1250px"></div>
+            <script type="module">
+                var myLandbot = new Landbot.Container({
+                container: '#myLandbot',
+                configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-3435617-ITPKU7NSOJCHY2Q4/index.json',
+                });
+            </script>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <!--La parte de JavaScript-->
+    <script>
+
+
+        //Aqui va la parte de los botones del muro anti bots y anti clicers.
+        function verificarsieshumano() {
+            let boton = document.getElementById("botonverificar");
+            boton.disabled= true;
+
+            alert("Por favor, espere unos instantes mientras el botón se restaura.")
+            
+            setTimeout(function() {
+                //Ahora vamos a hacer el truco de magia, para que aparezca y desaparezca la web, segun si hemos clickeadpo o no en el botón.
+                document.getElementById("bloqueodeseguridad").style.display = "none";
+                document.getElementById("lachistera").style.display = "block";
+                //Estos 1500 de abajo es por el timeout que puse arriba como función, para que no se quede estancado toda la vida cuando le de aceptar y no aparezca la web.
+            }, 1500);
+        }
+
+
+        //Oculta cada parte del indice
+        function mostrarSeccion(id) {
+            const secciones =
+            document.querySelectorAll('.Apartados');
+            secciones.forEach(seccion => {
+                seccion.style.display = 'none';
+            });
+        //Muestra solo lo que hago clic
+        const seleccionada =
+        document.getElementById(id).
+        style.display = 'block';
+        }
+
+            //AAqui deberemos de poner la variable global, sera nuestra base de datos de la tienda.
+            let carrito = [];
+
+        //Ahora toca pasar a los productos, los cuales voy a definir como una base de datos con javascript. Este paso es relativamente sencillo, ya que solo debo de crear un prototipo.
+        const MisProductos= [
+            //Como se puede obserbar tenemos por aquí algunos productos de la página web oficial.
+                //Almacenamiento
+            {
+                id: 1,
+                nombredelacategoria: "Almacenamiento",
+                nombre: "CPU AMD RYZEN 7 7800X3D AM5",
+                descripción: "Procesador de alto rendimiento, diseñado para aquellos que siempre buscan mas en tanto tareas como videojuegos. Este modelo pertenece a la familia Ryzen el cual usa un socket AM5. Ademas de ser compatible con las últimas plataformas del mercado, cuenta con gráficos integrados asi que no te debes de preocupar por comprarte una gráfica.",
+                precio: "385",
+                imagen: "https://www.coolmod.com/images/product/large/PROD-024047_1.jpg",
+                audio: "1.mp4"
+            },
+            {
+                id: 2,
+                nombre: "DDR4 TEAM GROUP ELITE UDIMM 16GB 3200 NEGRO",
+                descripción: "La memoria DDR4 TEAM GROUP ELITE UDIMM 16GB 3200 NEGRO, es un módulo diseñado para ordenadores de sobremesa, este ofrece tanto un buen rendimiento, como eficiencia energética, una de las mejores opciones si buscas potencia sin mucho gasto.",
+                precio: "39.95",
+                imagen: "https://m.media-amazon.com/images/I/71C+d-vsHYL.jpg",
+                audio: "2.M4A"
+            },
+            {
+                id: 3,
+                nombre: "PLACA BASE MSI PRO B760M-P 1700 MATX 4XDDR5",
+                descripción: "Placa base potente y económica, perfecto para un pc moderno INTEL de últimas generaciones, con soporte DDR5. Además de ello, buen rendimiento gaming y trabajo diario.",
+                precio: "119.90",
+                imagen: "https://storage-asset.msi.com/global/picture/image/feature/mb/Pro_B760M/PRO_B760M-P/msi-pro_b760m-p-pd.png",
+                audio: "3.mp4",
+            },
+            {
+                id: 4,
+                nombre: "Ventilador WP 120X120X38 220V",
+                descripción: "Ventilador para armarios de red, con cable de conexión de 2 metros, perfecto para refrigerar.",
+                precio: "18.5",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/6/68299/wp-ventilador-120x120x38mm-220v.jpg",
+                audio: "4.mp4",
+            },
+            {
+                id: 5,
+                nombre: "Bastidor GEMBIRD HD SATA SLIM PC",
+                descripción: "Compra ya este limpiador para tu ordenador, si es que buscas la mejor opción en calidad/precio.",
+                precio: "12",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGhjEGjduE8mEsn2qZ8hM2jWj2IG6LUGEMQ&s",
+                audio: "5.mp4",
+            },
+            {
+                id: 6,
+                nombre: "Armario LANBERJ MURAL RACK 19 PULGADAS FLAT PACK V2 NEGRO",
+                descripción: "Es muy importante elegir buenos componentes para armar tu pc ideal, pero ¿has pensado también en protegerlo contra el polvo?, por eso compra ya la nueva caja LUNBERJ MURAL.",
+                precio: "85",
+                imagen: "https://img.dynos.es/img/46308/1b000/B01--22460-4-41000F0W-0.jpg",
+                audio: "6.mp4",
+            },
+            {
+                id: 7,
+                nombre: "RATON LOGITECH M90 NEGRO",
+                descripción: "Si necesitas el mejor clickrate para ser el mejor o simplemente buscas una experiencia cómoda que te permita trabajar, compra ya el ratón logitech M90.",
+                precio: "7.50",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1037/10376618/1524-logitech-m90-raton-optico-usb-1000-dpi.jpg",
+                audio: "7.mp4",
+            },
+            {
+                id: 8,
+                nombre: "TECLADO LOGITECH K120 RETAIL USB NEGRO",
+                descripción: "Si pensabas que los teclados logitech no son los mejores, prueba este nuevo logitech K120, un teclado apenas ruidoso y que su acabado color negro pega bien con todo.",
+                precio: "12.90",
+                imagen: "https://www.dmi.es/photo/194/539/69886064/bg/teclado-logitech-k120-retail-usb-negro.jpg",
+                audio: "8.mp4",
+            },
+            {
+                id: 9,
+                nombre: "TARGETA PCI EXPRESS LANBERG CON 4 PUERTOS USB",
+                descripción: "Buscas una tarjeta PCI pero ninguna te rinde como tú quieres, ¡No sigas buscando!, Esta tarjeta EXPRESS Lanberg es la que estás buscando, solo disponible hasta Windows 10.",
+                precio: "15",
+                imagen: "https://storage.googleapis.com/catalog-pictures-carrefour-es/catalog/pictures/hd_510x_/5901969424539_1.jpg",
+                audio: "9.mp4",
+            },
+            {
+                id: 10,
+                nombre: "CABLE HDMI LANBERG MACHO/MACHO V1.4 ALTA VELOCIDAD",
+                descripción: "Harto de que tu HDMI deje de funcionar de repente o que transmita en muy baja calidad, tranquilo este HDMI tipo A es uno de los más recomendados por los profesionales en calidad/precio.",
+                precio: "4.50",
+                imagen: "https://img.dynos.es/img/66ff3/46308/KB--0010--CC01--IM0D4H4-0-0A0C-0.jpg",
+                audio: "10.mp4",
+            },
+            {
+                id: 11,
+                nombre: "CARGADOR GAMEPAD GENESIS TIN 305 PARA PS5/PS5 SLIM",
+                descripción: "¿Tienes miedo de que tu PS5/PS5 SLIM no tenga la mejor alimentación?, no te preocupes porque aquí te presento a la nueva carcasa GENSIS GAMPAD, con ella la diversión nunca termina.",                
+                precio: "19.90",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGQoPrTtJenWud9DuXqr20PSSepHwbYiKbYQ&s",
+                audio: "11.mp4",
+            },
+            //Fundas
+            {
+                id: 12,
+                nombredelacategoria: "Fundas",
+                nombre: "FUNDA HDD/SSD SATA III",
+                descripción: "Un nuevo marco para darle la mejor protección a tu disco duro.",
+                precio: "9.95",
+                imagen: "https://m.media-amazon.com/images/I/71Yxnxt5-7L.jpg",
+                audio: "12.mp4",
+            },
+            {
+                id: 13,
+                nombre: "FUNDA EBOOK SUBBLIM CLEVER CASE 6",
+                descripción: "¿Te encanta leer libros pero tienes miedo de que tu dispositivo se rompa?, déjame enseñarte la nueva funda EBOOK SUBBLIM CLEVER CASE 6, con ella puedes viajar por todo el mundo sin miedo a que se rompa.",
+                precio: "14.50",
+                imagen: "https://subblim.com/wp-content/uploads/2023/07/SUB-CUE-1EC100-Clever-Ebook-Stand-Case-6_-Grey-1.jpg",
+                audio: "13.mp4",
+            },
+            {
+                id: 14,
+                nombre: "FUNDA TABLET TARGUS CLICK-IN 10.9 PULGADAS, compatible con IPAD AIR 4 Y, IPAD PRO 1 Y 2",
+                descripción: "Funda antiarañazos y golpes, impresiona a tus amigos/as con esta preciosa funda.",                
+                precio: "34",
+                imagen: "https://img.dynos.es/img/6b2c0/57617/LG7536380Z0H0T-0.jpg",
+                audio: "14.mp4",
+            },
+            {
+                id: 15,
+                nombre: "FUNDA SBS OCEANO ECO-FRIENDLY PARA IPHONE 11 PRO",
+                descripción: "Deja que tus pensamientos fluyan con esta carcasa ECO, con un oso en la parte trasera de esta.",
+                precio: "12",
+                imagen: "https://img.dynos.es/img/57617/4cc40/GD9156PIVO8C0N3C0O0E0T-0.jpg",
+                audio: "15.mp4",
+            },
+            {
+                id: 16,
+                nombre: "ROUTER BOARD MIKROTIK CA411-711",
+                descripción: "Protege tu router con esta funda de aluminio y además te regalamos 9 protectores de puertos, para que no le entre polvo.",
+                precio: "18",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsBd8_R0heDn24hIjw4yvk1C1Is22Yk7qLRw&s",
+                audio: "16.mp4",
+            },
+            {
+                id: 17,
+                nombre: "FUNDA TRANSPORTE ASUS ROG ALLY",
+                descripción: "¿Quieres llevar tu consola a cualquier lado sin importar ni el clima ni el sitio?, compra ya la nueva funda TRANSPORTE ASUS ROG ALLY.",
+                precio: "29.90",
+                imagen: "https://m.media-amazon.com/images/I/7169hRTaX0L._AC_UF894,1000_QL80_.jpg",
+                audio: "17.mp4",
+            },
+            {
+                id: 18,
+                nombre: "MALETIN NATEC IMPALA 15,6 PULGADAS NEGRO",
+                descripción: "¿Tienes un viaje de trabajo o tienes unas merecidas vacaciones?, compra ya este protector de portátil doble función, ya que puede mantenerlo protegido y a la vez llevarlo contigo donde quieras desde la comodidad de su asa.",
+                precio: "16.50",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1051/10518028/4106-natec-impala-maletin-para-portatil-hasta-156-negro-especificaciones.jpg",
+                audio: "18.mp4",
+            },
+            {
+                id: 19,
+                nombre: "MOCHILA TARGUS OCTIVE III PAPYRU 15,6 PULGADAS",
+                descripción: "Ten la máxima protección garantizada para tus estudios con esta mochila color crema.",
+                precio: "28",
+                imagen: "https://es.targus.com/cdn/shop/files/TBB65313GL_70_MAIN1_9a96f4df-7f17-4bd3-82a3-a9295caf0d7a_1024x1024.jpg?v=1724143705",
+                audio: "19.mp4",
+            },
+            {
+                id: 20,
+                nombre: "ESTUCHE DE CAMARA FOTOGRAFICA NATEC SHRIMP ELEGANT 2,5 PULGADAS NEGRO",
+                descripción: "Lleva contigo tu cámara con esta funda negra, compatible con cualquier marca.",
+                precio: "8",
+                imagen: "https://img.soluziondigital.com/569730-large_default/natec-net-0396-shrimp-funda-negro.jpg",
+                audio: "20.mp4",
+            },
+            //Componentes
+            {
+                id: 21,
+                nombredelacategoria: "Componentes",
+                nombre: "NAS SYNOLOGY DS620LSM 2,5GHZ 6BAY",
+                descripción: "Compra esta estación de discos, para almacenar sin perderlos.",
+                precio: "540",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/30/305582/333-synology-diskstation-ds620slim-nas-mejor-precio.jpg",
+                audio: "21.mp4",
+            },
+            {
+                id: 22,
+                nombre: "DISCO WD PURPLE 8TB SATA3 256MB",
+                descripción: "¿Necesitas más espacio y te gustaría portarlo a otro lado?, compra ya este pequeño disco portable de 8TB.",
+                precio: "215",
+                imagen: "https://deima.es/5492-large_default/disco-wd-purple-8tb-sata3-256mb.jpg",
+                audio: "22.mp4",
+            },
+            {
+                id: 23,
+                nombre: "DISCO DURO EXT TOSHIBA 1TB BASIC NEGRO",
+                descripción: "Llévate ya este disco duro externo y llévatelo contigo donde quieras.",
+                precio: "52",
+                imagen: "https://img.dynos.es/img/430c1/430c1/AA3KE011553B0T0D0H-0.jpg",
+                audio: "23.mp4",
+            },
+            {
+                id: 24,
+                nombre: "SSD EXTERNO KINGSTON 2TB XS1000",
+                descripción: "Lleva contigo tu SSD externo y así podrás llevar toda la información, aplicaciones, etc., DONDE TÚ DESEES.",
+                precio: "135",
+                imagen: "https://m.media-amazon.com/images/I/61FIsDdEWlL._AC_UF350,350_QL80_.jpg",
+                audio: "24.mp4",
+            },
+            {
+                id: 25,
+                nombre: "SSD KINGSTON A400 240GB SATA3",
+                descripción: "Es perfecto si se busca rápido almacenamiento y velocidad al usar apps.",
+                precio: "24",
+                imagen: "https://m.media-amazon.com/images/I/71SVm-9Q+EL._AC_UF350,350_QL80_.jpg",
+                audio: "25.mp4",
+            },
+            {
+                id: 26,
+                nombre: "DVDRW EXT GEMBIRD NEGRO",
+                descripción: "¿Tienes discos antiguos pero no sabes cómo verlos?, compra ya este lector de DVD y verás la máxima calidad desde la comodidad de tu casa, en cualquier televisor.",
+                precio: "22",
+                imagen: "https://m.media-amazon.com/images/I/51c7i+olBJL._AC_UF1000,1000_QL80_.jpg",
+                audio: "26.mp4",
+            },
+            {
+                id: 27,
+                nombre: "LECTOR DE TARGETAS NATEC USB 3.0 SCARAB 2 SD/MICRO SD NEGRO",
+                descripción: "Lee tus tarjetas USB 3.0 y Micro SD con este lector de tarjetas.",
+                precio: "11.50",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1w-hzKYwLMCoCfvBa01Q68NcuY04IHUCZrg&s",
+                audio: "27.mp4",
+            },
+            {
+                id: 28,
+                nombre: "MICRO SD PNY 32 GB ELITE",
+                descripción: "Esta es una tarjeta de memoria con la que puedes aliviar mucho tu sistema al mover algunos archivos a esta tarjeta.",
+                precio: "6.50",
+                imagen: "https://m.media-amazon.com/images/I/71PIE9WpCXL.jpg",
+                audio: "28.mp4",
+            },
+            {
+                id: 29,
+                nombre: "USB 2.0 KIOXIA 64GB U202 BLANCO",
+                descripción: "Guarda tu información en este pendrive 2.0 de 64 GB portable, con acabado en blanco.",
+                precio: "8.90",
+                imagen: "https://www.neobyte.es/71905-large_default/kioxia-u202-64gb-pendrive-usb-20-blanco.jpg",
+                audio: "29.mp4",
+            },
+            {
+                id: 30,
+                nombre: "USB 2.0 KIOXIA 32GB U202 BLANCO",
+                descripción: "Guarda tu información en este pendrive 2.0 de 32 GB portable, con acabado en blanco..",
+                precio: "5.50",
+                imagen: "https://img.pccomponentes.com/articles/42/423566/3505-kioxia-transmemory-u202-32gb-usb-20-blanco-mejor-precio.jpg",
+                audio: "30.mp4",
+            },
+            //Portatiles
+            {
+                id: 31,
+                nombredelacategoria: "Portatiles",
+                nombre: "ADAPTADOR ASIENS DISCO DURO 70MM UNIDAD OPTICA PORTATIL DE 95MM",
+                descripción: "¿Quieres que tu disco esté protegido contra el polvo?, compra ya este adaptador y haz que tu disco duro dure mucho más.",
+                precio: "12.50",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ12YMS3Ra2SuIa75lH0YpYwblWgOmeq6RSkQ&s",
+                audio: "31.mp4",
+            },
+            {
+                id: 32,
+                nombre: "BASE REFRIGERADORA GEMBIRD PORTATIL 17 PULGADAS CON AJUSTE",
+                descripción: "Soporte de refrigeración con ventilador y ajuste de altura para portátiles.",
+                precio: "24.90",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1051/10515366/5746-gembird-nbs-1f17t-01-base-refrigeradora-para-portatil-hasta-17-caracteristicas.jpg",
+                audio: "32.mp4",
+            },
+            {
+                id: 33,
+                nombre: "PORTATIL HP 15-fd0359ns i3-N305 8GB 512GB 15.6 PULGADAS FHD W11H BLANCO",
+                descripción: "¿Necesitas un portátil para trabajar o como almacenamiento de datos?, aquí tienes el nuevo portátil con 512 GB de almacenamiento, para que no necesites discos externos.",
+                precio: "399",
+                imagen: "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MP_169479261/fee_786_587_png",
+                audio: "33.mp4",
+            },
+            {
+                id: 34,
+                nombre: "PORTATIL HP 255R G10 R5-7535U 8GB 512GB 15,6 PULGADAS FHD FREEDOS",
+                descripción: "Disfruta de un ordenador portátil de uso diario y trabaja desde cualquier lugar con un potente procesador y herramientas esenciales para cualquier tipo de trabajo.",
+                precio: "485",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMZRqWbPCDBjaUnXV9jzX7x2k_rKUJmBdTg&s",
+                audio: "34.mp4",
+            },
+            {
+                id: 35,
+                nombre: "PORTATIL DELL PRO 15 ESSENTIAL PV15250 I5-1334U 8GB 512GB 15,6 PULGADAS FHD W11P",
+                descripción: "DELL, considerada una de las mejores marcas de portátiles, ha sacado este nuevo 15 Pro, que se posiciona como una de las mejores opciones para trabajar y también es bueno para jugar.",
+                precio: "640",
+                imagen: "https://img.dynos.es/img/289e7/2d369/79Y3N0X0X03-0.jpg",
+                audio: "35.mp4",
+            },
+            {
+                id: 36,
+                nombre: "PORTATIL DELL PRO 15 ESSENTIAL PV15250 I7-1355U 16GB 1TB 15,6 PULADAS FHD W11P",
+                descripción: "Elige el mejor portátil calidad-precio con este producto único de DELL.",
+                precio: "920",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1098/10986266/3977-portatil-dell-pro-15-essential-pv15250-156-intel-core-i7-1355u-16gb-1tb-ssd-intel-uhd-windows-11-pro-mejor-precio.jpg",
+                audio: "36.mp4",
+            },
+            {
+                id: 37,
+                nombre: "PORTAIL HP 255 G10 R7-7730U 16GB 512GB 15,6 PULGADAS FHD FREEDOS",
+                descripción: "Hay ocasiones en la vida en las que es mejor disfrutar de una conversación cara a cara; este portátil es una de las mejores opciones para ello. Trabaja desde casa cómodamente y juega a la vez.",
+                precio: "590",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsi1XS3UHQMBF87047_1Ena5yM_PajxyIEgg&s",
+                audio: "37.mp4",
+            },
+            {
+                id: 38,
+                nombre: "WORSTATION HP ZBOOK G11 R7-8845HS/16GB/512GB/RTXA1000/16PULGADAS/W11P",
+                descripción: "Trabaja desde cualquier lugar sin importar la calidad ni el precio. Hazlo realidad ahora con este portátil con gráfica RTX incluida; con él, no habrá problemas de almacenamiento ni carga lenta.",
+                precio: "1850",
+                imagen: "https://m.media-amazon.com/images/I/71gDHNgJtoL._AC_UF894,1000_QL80_.jpg",
+                audio: "38.mp4",
+            },
+            {
+                id: 39,
+                nombre: "APPLE MACBOOK PRO M4 16GB 512GB 10C CPU 14 PLGADAS SPACE BLACK",
+                descripción: "El MacBook Pro M4 incorpora la gama más avanzada de chips que se ha creado nunca para un portátil profesional.",
+                precio: "2000",
+                imagen: "https://static.fnac-static.com/multimedia/Images/ES/NR/8c/eb/90/9497484/1505-1.jpg",
+                audio: "39.mp4",
+            },
+            {
+                id: 40,
+                nombre: "BASE REFRIGERADORA GEMBIRD PORTATIL 15 PULGADAS",
+                descripción: "Refresca tu portátil sin importar el modelo; además, te lo puedes llevar a todos lados por su sencillez y su comodidad.",
+                precio: "18",
+                imagen: "https://img.pccomponentes.com/articles/1051/10515366/5746-gembird-nbs-1f17t-01-base-refrigeradora-para-portatil-hasta-17-caracteristicas.jpg",
+                audio: "40.mp4",
+            },
+            {
+                id: 41,
+                nombre: "PORTATIL DELL PRO 16 PLUS PB16250 U7-255U 16GB 512GB 16FHD W11P",
+                descripción: "Si necesitas lo mejor de lo mejor, cómprate este portátil DELL PRO 16 PLUS. No encontrarás un mejor equilibrio en un portátil; además, su precio único y el mejor rendimiento hacen de este portátil el mejor que verás actualmente. Y si también necesitas trabajar, ¡adivina!, es el mejor portátil actual de todo el mercado. No esperes más a que suban los precios.",
+                precio: "1700",
+                imagen: "https://www.dmi.es/photo/151/116215/125371871/bg/portatil-dell-pro-16-plus-pb16250-u7-255u-16gb-512gb-16-fhd-w11p.jpg",
+                audio: "41.mp4",
+            },
+            //Camaras
+            {
+                id: 42,
+                nombredelacategoria: "Cámaras",
+                nombre: "CAJA CONEXIONES TP-LINK VIGI VJB-240 CAMARA IP MONTAJE PARED",
+                descripción: "¡No busques más!, compra ya esta caja de conexiones TP-Link para tu cámara.",
+                precio: "15",
+                imagen: "https://www.notebookcheck.org/fileadmin/_processed_/6/f/csm_apple-macbook-pro-14-2024-m4-pro-12c-black-nanotexture_3c0e863324.jpg",
+                audio: "42.mp4",
+            },
+            {
+                id: 43,
+                nombre: "WEBCAM LOGITECH C920S HD PRO FHD 1920 X 1080PX NEGRA",
+                descripción: "¿Buscas una cámara para teletrabajar?, compra ya esta cámara con la máxima calidad disponible. Con dos micrófonos integrados y un pequeño altavoz, con este producto no te harán falta cascos ni audífonos.",
+                precio: "79",
+                imagen: "https://m.media-amazon.com/images/I/71B8fzhyTpL._AC_UF894,1000_QL80_.jpg",
+                audio: "43.mp4",
+            },
+            {
+                id: 44,
+                nombre: "ACCESORIO UBIQUITI UACC-G4-INCOVER-DARKGRAY PROTECT G4 INSTANT",
+                descripción: "Recubre tu cámara con la mejor funda del mercado, ahora en color gris para mayor ocultamiento.",
+                precio: "12",
+                imagen: "https://images.svc.ui.com/?u=https%3A%2F%2Fcdn.ecomm.ui.com%2Fproducts%2F369c36a6-e201-4dfb-a9d0-a25eee3b0405%2F1c54e038-6682-4931-8fbb-c5a70bab311a.png&q=75&w=3840",
+                audio: "44.mp4",
+            },
+            //Imagen y Sonido
+            {
+                id: 45,
+                nombredelacategoria:"Imagen/Sonido",
+                nombre: "ANDROID STRONG SRT 427",
+                descripción: "¿Aburrido en tu casa?, compra ya esta Smart TV Box con todo tipo de aplicaciones (Netflix, YouTube y mucho más).",
+                precio: "55",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1096/10966117/6229-receptor-android-tv-strong-srt-427-3-en-1-tdt-sat-4k-ultra-hd-16gb-ddr2-wi-fi-opiniones.jpg",
+                audio: "45.mp4",
+            },
+            {
+                id: 46,
+                nombre: "SWITCH HDMI GEMBIRD 3 PUERTOS HDMI",
+                descripción: "Conecta hasta 3 dispositivos a este switch HDMI; toda la diversión y conexiones desde tu tienda favorita.",
+                precio: "14",
+                imagen: "https://storage.googleapis.com/catalog-pictures-carrefour-es/catalog/pictures/hd_510x_/8716309085717_1.jpg",
+                audio: "46.mp4"
+            },
+            {
+                id: 47,
+                nombre: "HDMI INALAMBRICO AISENS 1080P 30M NEGRO",
+                descripción: "¿Te encantaría usar el ordenador pero está muy lejos de la pantalla? Aquí tienes tu solución inmediata: compra ya este HDMI de largo alcance (30 m). Tu diversión, en tu tienda más cercana.",
+                precio: "115",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRowDSEKEuV9rht2uZtzpEtc1j4HlOVT59h8g&s",
+                audio: "47.mp4"
+            },
+            {
+                id: 48,
+                nombre: "SPEAKER MAXHUB UC BM45 WIRELESS USB",
+                descripción: "¿Necesitas un altavoz que realmente se escuche como a ti te gusta?, compra ya este altavoz súper resistente y poco pesado.",
+                precio: "240",
+                imagen: "https://sgp-cstore-pub.maxhub.com/maxhub_global_public/upload/m4v12bvp/UC_BM45-MTR-certified_nav.png",
+                audio: "48.mp4"
+            },
+            {
+                id: 49,
+                nombre: "XIAOMI MI SELFIE STICK TRIPOD NEGRO",
+                descripción: "¿Necesitas grabar fuera de tu estudio? Compra este trípode para smartphones.",
+                precio: "19.90",
+                imagen: "https://www.orly.es/37994-large_default/xiaomi-mi-selfie-stick-tripod-palo-para-autofotos-smartphone-negro.jpg",
+                audio: "49.mp4"
+            },
+            {
+                id: 50,
+                nombre: "MONITOR VIEWSONIC VX 1654 16 PULGADAS FHD IPS 144HZ MINI HDMI",
+                descripción: "Necesitas este monitor obligatoriamente si necesitas salir de tu zona de confort: poco peso, gran calidad y precios bajos.",
+                precio: "210",
+                imagen: "https://m.media-amazon.com/images/I/61JeCNk+MNL._AC_UF894,1000_QL80_.jpg",
+                audio: "50.mp4"
+            },
+            {
+                id: 51,
+                nombre: "ALTAVOCES NATEC COUGAR 6W RMS 2.0 NEGRO",
+                descripción: "Compra estos altavoces duales con la máxima calidad posible. ¡Que la diversión no pare!",
+                precio: "16",
+                imagen: "https://img.pccomponentes.com/articles/1073/10731258/1694-natec-cougar-altavoces-rms-20-6w-negro.jpg",
+                audio: "51.mp4"
+            },
+            {
+                id: 52,
+                nombre: "ALTAVOZ XIAOMI DESKTOP SPEAKER",
+                descripción: "Compra este artículo si buscas la mejor relación calidad/precio para un altavoz de casa.",
+                precio: "45",
+                imagen: "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-desktop-speaker/m/0f5995ea9364f00571895fbb0dfe6f02.jpg",
+                audio: "52.mp4"
+            },
+            {
+                id: 53,
+                nombre: "AURICULARES GEMBIRD MHS-123 NEGRO MICROFONO ALAMBRICO JACK 3.5MM",
+                descripción: "Cómodo, compatible con cualquier dispositivo y un optimizador de espacio.",
+                precio: "9.50",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1046/10461036/1188-gembird-mhs-123-auriculares-con-microfono-negros.jpg",
+                audio: "53.mp4"
+            },
+            {
+                id: 54,
+                nombre: "RADIO PORTATIL TREVÍ MULTIBANDA BLUETOOTH USB MICRO SD NEGRO",
+                descripción: "Escucha las mejores canciones y las mejores emisoras en esta radio portátil; lleva tu música a donde quieras.",
+                precio: "28",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeqJUhzI30wTXiD-Uuen_eX5RQ6SWGGp40Sw&s",
+                audio: "54.mp4"
+            },
+            //Impresoras y Escaneres
+            {
+                id: 55,
+                nombredelacategoria:"Impresoras/Escaneres",
+                nombre: "FILAMENTO ABS GEMBIRD NEGRO, 1,75MM 1KG",
+                descripción: "Para todo tipo de impresoras y en todos los colores, compra ya este filamento GEMBIRD ultraresistente.",
+                precio: "19.90",
+                imagen: "https://media.cablematic.com/__sized__/images_1000/gb60000-01-thumbnail-1080x1080-70.jpg",
+                audio: "55.mp4"
+            },
+            {
+                id: 56,
+                nombre: "ROLLO PAPEL TERMICO 80MM X 80 METROS SIN BPA (48 UNIDADES)",
+                descripción: "¿Te has comprado una impresora de tickets para tu negocio? Pues cómprate estos rollos de papel de impresión sin bisfenol.",
+                precio: "58",
+                imagen: "https://m.media-amazon.com/images/I/61C+kZMt98L._AC_UF1000,1000_QL80_.jpg",
+                audio: "56.mp4"
+            },
+            {
+                id: 57,
+                nombre: "TINTA HP 730 GRAY",
+                descripción: "Ideal para la reproducción de líneas definidas y colores brillantes de mapas GIS y documentos técnicos en papel normal.",
+                precio: "135",
+                imagen: "https://innovainformatica.com/images-amigables/id20/cartucho-hp-730-original-rendimiento-estandar-gris-p2v66a-p2v66a-grande.jpg",
+                audio: "57.mp4"
+            },
+            {
+                id: 58,
+                nombre: "CARTUCHO DE TINTA HP 302 NEGRO",
+                descripción: "Consigue resultados de gran calidad con la tinta original HP y haz que tu trabajo sea mejor que el resto.",
+                precio: "22",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW9xnBlz1k_0OzmeoIjNFamV5JCjLSEaLHcQ&s",
+                audio: "58.mp4"
+            },
+            {
+                id: 59,
+                nombre: "ESCANER CANON LIDE 400",
+                descripción: "Escanea todos tus productos con la mejor calidad y rapidez posible con este escáner Canon.",
+                precio: "95",
+                imagen: "https://m.media-amazon.com/images/I/31FzSP2I8FL._AC_UF894,1000_QL80_.jpg",
+                audio: "59.mp4"
+            },
+            {
+                id: 60,
+                nombre: "IMPRESORA XIAOMI INSTANT PRINTER PHOTO 1S SET WHITE",
+                descripción: "Imprime de forma automática y con muy buena calidad tus fotos con esta impresora Xiaomi y, con ella, revive esos momentos tan importantes.",
+                precio: "129",
+                imagen: "https://www.dmi.es/photo/922/106473/73288686/bg/impresora-xiaomi-instant-printer-photo-1s-set-white.jpg",
+                audio: "60.mp4"
+            },
+            {
+                id: 61,
+                nombre: "ESCANER HONEYWELL VOYAGER 1200G 1D USB NEGRO MULTI INTERFACE",
+                descripción: "Excepcional rendimiento de escaneo, aun con códigos de barras de mala calidad.",
+                precio: "110",
+                imagen: "https://www.dmi.es/photo/274/28733/20265728/bg/escaner-honeywell-voyager-1200g-1d-usb-negro-multi-interface-rs232-kbw-usb.jpg",
+                audio: "61.mp4"
+            },
+            {
+                id: 62,
+                nombre: "IMPRESORA HP MULTIFUNCIONAL OFFICEJET PRO 9130B",
+                descripción: "COMPRA YA esta nueva impresora HP que puede ser configurada fácil y cómodamente desde la aplicación móvil de HP.",
+                precio: "265",
+                imagen: "https://img.pccomponentes.com/articles/1081/10812116/3714-hp-officejet-pro-9130b-aio-impresora-multifuncion-color-wifi-duplex-fax-mejor-precio.jpg",
+                audio: "62.mp4"
+            },
+            {
+                id: 63,
+                nombre: "BOTELLA DE TINTA ORIGINAL CANON GI-590 NEGRA.",
+                descripción: "¿Necesitas un recambio de tinta pero no sabes cuál elegir? Escoge ya sin dudas este recambio de tinta ultraduradero.",
+                precio: "12.50",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSraaUK0_b3Gb486YjBOgUDWFUEI8YcG3geCg&s",
+                audio: "63.mp4"
+            },
+            //Ordenadores y Monitores
+            {
+                id: 64,
+                nombredelacategoria: "Ordenadores/Monitores",
+                nombre: "SOPORTE GEMBIRD PARA 2 PANTALLAS DE ESCRITORIO AJUSTABLE 17-32 HASTA 9 KG.",
+                descripción: "Soporte de escritorio para monitor con brazos dobles. Sus brazos flexibles permiten lograr un posicionamiento ergonómico y funciona con casi cualquier monitor (de hasta 32 pulgadas).",
+                precio: "42",
+                imagen: "https://megahogar.es/fotos/TV9032299.jpg",
+                audio: "64.mp4"
+            },
+            {
+                id: 65,
+                nombre: "PC VIZZIO GAMING SILVER G I5-12400F 16GB/500SSD RTX3050",
+                descripción: "Rendimiento gaming equilibrado con procesador Intel de 12.ª generación y gráfica dedicada (RTX 3050).",
+                precio: "720",
+                imagen: "https://img.pccomponentes.com/articles/1105/11055284/1418-pc-sobremesa-vizzio-silver-g-intel-core-i5-12400f-16gb-500gb-ssd-rtx-3050-windows-11.jpg",
+                audio: "65.mp4"
+            },
+            {
+                id: 66,
+                nombre: "DIFFERO GAMING I7-11700 16GB/1TB GRAFICA 4060N",
+                descripción: "¿Buscas un ordenador potente? Este ordenador gaming es exactamente lo que buscas, con un procesador i7 de 11.ª generación y una gráfica 4060 N dedicada; con él, hasta los juegos más duros son sencillitos de correr en máxima calidad.",
+                precio: "1150",
+                imagen: "https://pcbox.vtexassets.com/arquivos/ids/2052436/OR1339099_IMG_DEF.jpg?v=638550458060930000",
+                audio: "66.mp4"
+            },
+            {
+                id: 67,
+                nombre: "PC VIZZIO GOLD I7-14700F 32GB/1TB RTX 5060 TI",
+                descripción: "Este PC es para las personas insaciables. ¿El PC VIZZIO SILVER no te pareció gran cosa? Con este ordenador podrás correr cualquier videojuego sin problemas gracias a su nueva gráfica (5060 Ti).",
+                precio: "1480",
+                imagen: "https://www.efecto2000.es/942146-home_default_2x/pc-vizzio-gold-r5-7600-32gb-1tb-rtx-5060.jpg",
+                audio: "67.mp4"
+            },
+            {
+                id: 68,
+                nombre: "SERVIDOR DELL T160 6TT6G 6315P 16GB 2TB HDD SATA",
+                descripción: "Implemente una computación masiva en cualquier lugar con la ultima familia de servidores potentes y seguros, diseñados para acelerar la automatización y la innovación.",
+                precio: "1250",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1098/10986283/3842-servidor-dell-poweredge-t160-intel-xeon-6315p-16gb-2tb-tower-no-os-mejor-precio.jpg",
+                audio: "68.mp4"
+            },
+            {
+                id: 69,
+                nombre: "SERVIDOR HPE P70196-421 PROLIANT ML350 GEN11 S4514Y 16 CORE",
+                descripción: "Este excelente servidor abre sus puertas al mundo híbrido. Estos nuevos servidores simplifican la forma de controlar la computación de tu negocio, logrando una gran mejora con una sola inversión.",
+                precio: "2950",
+                imagen: "https://gfx3.senetic.com/product-description-images/-116900a5-caac-475b-a593-68ff282e1807.jpg",
+                audio: "69.mp4"
+            },
+            {
+                id: 70,
+                nombre: "SERVIDOR DELL T160 6TT6G 6315P 16GB 2TB HDD SATA",
+                descripción: "Servidor multifuncional, una total revolución. Además, su diseño integrado hace de este producto una maravilla.",
+                precio: "1250",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1098/10986283/3842-servidor-dell-poweredge-t160-intel-xeon-6315p-16gb-2tb-tower-no-os-mejor-precio.jpg",
+                audio: "70.mp4"
+            },
+            {
+                id: 71,
+                nombre: "FILTRO DE PRIVACIDAD NATEC OWL 14 PULGADAS",
+                descripción: "Para tu seguridad compra este filtro y así evita a los cotillas.",
+                precio: "22",
+                imagen: "https://img.soluziondigital.com/663733-home_default/natec-nfp-1474-owl-35-6-cm-14-portatil-filtro-de-privacidad-para-pantallas-sin-marco.jpg",
+                audio: "71.mp4"
+            },
+            {
+                id: 72,
+                nombre: "PC MRMICRO I7 12700 16GB SSD5000NVME Q2 HPA4 NO DVD",
+                descripción: "PC de la casa, el cual consta de un i7 de 12.ª generación con 16 GB de RAM y con un SSD con mucho espacio de almacenamiento. Potente y con una definición sencilla.",
+                precio: "840",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaXp0j00ObOgk8dlX-tv1XHYSvGOacuWZ0gQ&s",
+                audio: "72.mp4"
+            },
+            {
+                id: 73,
+                nombre: "MONITOR INTERACTIVO WIN MAXHUB XBOARD V7 SERIES V5550 55 PULGADAS",
+                descripción: "¿Te gustan las tablets y pantallas táctiles? Pues no te lo pienses más, compra ya esta pantalla GIGANTE táctil de 55 pulgadas. ¡Disfruta tú y los tuyos de la mejor diversión desde nuestra tienda!",
+                precio: "1650",
+                imagen: "https://www.office-easy.es/media/pub/desc/Tableau-blanc-interactif/maxhub-salle-de-reunion-2.webp",
+                audio: "73.mp4"
+            },
+            //Tablets y SMARTPHONES
+            {
+                id: 74,
+                nombredelacategoria:"Tablets/SmartPhones",
+                nombre: "FUNDA TABLET SUBBLIM KEYTAB PRO BLUETOOTH 10 PULGADAS RED",
+                descripción: "Funda ergonómica de muy alta calidad. Es una de las mejores del mercado por su sencillez de diseño y una comodidad acolchada que hace que tu dispositivo esté más seguro.",
+                precio: "35",
+                imagen: "https://subblim.com/wp-content/uploads/2023/07/SUB-KT2-BT0003-KeyTab-Pro-BLUETOOTH-10122-Red-1.jpg",
+                audio: "74.mp4"
+            },
+            {
+                id: 75,
+                nombre: "ESTACIÓN POWERBANK GEMBIRD 5000mAH 1xmicroUSB a 2x USB-A NEGRO",
+                descripción: "¿Tienes miedo de salir fuera de casa y que se te quede en un momento importante el móvil sin batería? Pues no hay problema, compra esta batería externa de alta calidad con dos puertos USB por si necesitas cargar otro dispositivo.",
+                precio: "14",
+                imagen: "https://m.media-amazon.com/images/I/41dbSrZHTHL._AC_UF1000,1000_QL80_.jpg",
+                audio: "75.mp4"
+            },
+            {
+                id: 76,
+                nombre: "POWERBANK SOLAR GEMBIRD 10.000mAH NEGRO",
+                descripción: "¿Te parece un gasto de energía excesivo tener que cargar tu batería externa? Pues compra esta batería externa SOLAR: no hace falta que consumas más luz cada mes y tiene una capacidad de almacenamiento mucho mayor que las baterías externas comunes.",
+                precio: "26",
+                imagen: "https://cdn.milar.es/estaticos/extras/cache/fotos/productos/00/00/32/82/78/396X396_8716309135177.webp",
+                audio: "76.mp4"
+            },
+            {
+                id: 77,
+                nombre: "CABLE TRENZADO DE ALGODON GEMBIRD 8 PINES CON CONETORES METALICOS MEDIDA:1.8 METROS",
+                descripción: "Cable USB 2.0 de carga, es importantes saber que SOLO SIRVE PARA IPHONE 5+, muy alta calidad de carga y gracias a sus pines metalicos, totalmente confiable en transferencia de datos en alta velocidad.",
+                precio: "8.50",
+                imagen: "https://media.adeo.com/mkp/c48e2bfdd1cab43d7cb40a9f8a2b648f/media.jpg?width=3000&height=3000&format=jpg&quality=80&fit=bounds",
+                audio: "77.mp4"
+            },
+            {
+                id: 78,
+                nombre: "NAVEGADOR GPS GARMIN LGV820 TACTIL",
+                descripción: "Excepcional rendimiento de escaneo, aún con códigos de barras de mala calidad.",
+                precio: "380",
+                imagen: "https://thumbs.ielectro.es/product/med/30834-3.webp",
+                audio: "78.mp4"
+            },
+            {
+                id: 79,
+                nombre: "TERMINAL MOVIL UROVO POSIFLEX CT58S 5000mAH OCTA CORE ANDROID 12 IP67",
+                descripción: "Disfruta de este android UROVO con nueva funcionalidad tactil",
+                precio: "460",
+                imagen: "https://urovo-emea.com/wp-content/uploads/2023/07/CT58_side_1.png",
+                audio: "79.mp4"
+            },
+            {
+                id: 80,
+                nombre: "LEOTEC SENIOR SMART BAND 4G GPS NEGRA",
+                descripción: "¿Tienes miedo de que tus conocidos no sepan llamar en una urgencia?, Pues compra ya este LEOTEC MART SENIOR, un producto muy simple y sencillo el cual tiene una gran cantidad de funcionabilidades como el ritmo cardiaco el llamada a SOS que le atenderan en poco tiempo.",
+                precio: "65",
+                imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuFtQJZ86K-0dpf2CMeQFdapnS5ustF6MRPQ&s",
+                audio: "80.mp4"
+            },
+            {
+                id: 81,
+                nombre: "MONITOR INTERACTIVO WIN MAXHUB V755T 75 PULGADAS SERIE 7 WI-FI.",
+                descripción: "¿Necesitas hacer tu exposicion esperada?, No te preocupes, compra ya esta pizarra interactiva para asegurarte el ascenso e impresionar a todos, destacando por los demás.",
+                precio: "2800",
+                imagen: "https://www.dmi.es/photo/1840/108571/97114638/bg/monitor-interactivo-win-maxhub-xboard-v7-series-v7550-75-ifp.jpg",
+                audio: "81.mp4"
+            },
+            {
+                id: 82,
+                nombre: "PULSERA DE ACTIVIDAD XIAOMI SMART BAND 7 PRO NEGRO",
+                descripción: "¿Necesitas un reloj para ver tu actividad deportiva pero tambien te gusta ser elegante?, Pues no te lo pienses mas, este reloj XIAOMI es perfecto para salir elegante para hacer ejercicio, gracias a su dedicado negro con tonos anaranjados, hace de este reloj una persona mejor.",
+                precio: "59",
+                imagen: "https://img.pccomponentes.com/articles/1056/10569994/1805-xiaomi-smart-band-7-pro-pulsera-de-actividad-negra.jpg",
+                audio: "82.mp4"
+            },
+            {
+                id: 83,
+                nombre: "FUNDA TABLET MAILLON URBAN UNICORN KEYBOARD USB",
+                descripción: "Diseñadas para aquellos que les molesta estar con la tablet de forma completamente horizontal o vertical, esta funda tiene una inclinacion deseada, tu elijes como la quieres y lo mejor es que tanto su teclado como sus luces de neón te acabaran convenciendo, ademas su material suave esta en la boca de muchos, !COMPRA YA ANTES QUE SE ACABE¡",
+                precio: "42",
+                imagen: "https://storage.googleapis.com/catalog-pictures-carrefour-es/catalog/pictures/hd_510x_/8435555100585_1.jpg",
+                audio: "83.mp4"
+            },
+            //HOGAR TPV
+            {
+                id: 84,
+                nombredelacategoria:"HogarTPV",
+                nombre: "MESA GAMING GENESIS HOLM 200 RGB NEGRO CARBONO",
+                descripción: "¿Buscas lo mejor para tus dispositivos?,¿Estas harto de quedarte sin espacio o tener miedo de que se mojen tus cosas?, Te traigo tu mejor aliado, esta mesa GAMING GENESIS es sin dudas una de las mejores superventas en todas las tiendas, lo tiene todo, no hay problemas con los cables, Diseño impresionante, iluminación propia, Posavasos y soporte para cascos.",
+                precio: "145.57",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/30/303928/1711-genesis-holm-200-rgb-mesa-gaming-negra-foto.jpg",
+                audio: "84.mp4"
+            },
+            {
+                id: 85,
+                nombre: "SILLA SHARKOON OFFICEPAL C50 NEGRA",
+                descripción: "Es asegurado la comodidad, es imposible que puedas ver una silla mas cómoda, con reposabrazos, ruedas y reposa cabezas, completamente una muy buena inversión si buscas lo mejor de lo mejor.",
+                precio: "185.56",
+                imagen: "https://www.sharkoon.com/ImgSrv/720/OfficePal_C50/ProductPictures/Gaming_Chair/OfficePal_C50/C50/OfficePal_C50_content_01.jpg",
+                audio: "85.mp4"
+            },
+            {
+                id: 86,
+                nombre: "SILLA GAMING VIZZIO NAYADE V2 NEGRO/AZUL.",
+                descripción: "Pensada para los 'Enganchados' a los videojuegos sin duda una buena opción comodidad/calidad/precio.",
+                precio: "155.50",
+                imagen: "https://m.media-amazon.com/images/I/61UeHQjjJvL.jpg",
+                audio: "86.mp4"
+            },
+            {
+                id: 87,
+                nombre: "ALFOMBRILLAS NATEC CHIPMUNK REPOSAMUÑECAS NEGRA 230 X 200 MM",
+                descripción: "Cómoda, sencilla de tela con reposamuñecas para que esas hora de trabajo se hagan mas cortas.",
+                precio: "7.90",
+                imagen: "https://www.efecto2000.es/563256-large_default_2x/alfombrilla-natec-chipmunk-230x200-mm-raton-con-reposamu-ecas-negra.jpg",
+                audio: "87.mp4"
+            },
+            {
+                id: 88,
+                nombre: "KIT PRECISION MI CORDLESS PRECISION SCREWDRIVER KIT",
+                descripción: "¿Estas haciendo una reforma en tu casa?, Necesitas este destornillador fino como un lápiz y cómodo como un colchón, además viene con un juego COMPLETO de puntas.",
+                precio: "39.50",
+                imagen: "https://m.media-amazon.com/images/I/610Oe01bSLL._AC_UF350,350_QL80_.jpg",
+                audio: "88.mp4"
+            },
+            {
+                id: 89,
+                nombre: "VOLANTE Y PEDALES GENESIS SEABORG 350 USB VIBRACIÓN MULTIPLATAFORMA",
+                descripción: "¿Deseas jugar tus juegos favoritos como Forza Horizon o Gran Turismo?, Pues hazlo realidad con este pedazo de kit de volante y pedales MULTIPLATAFORMA.",
+                precio: "85",
+                imagen: "https://img.pccomponentes.com/articles/37/377708/1115-genesis-seaborg-350-volante-y-pedales-multiplataforma.jpg",
+                audio: "89.mp4"
+            },
+            {
+                id: 90,
+                nombre: "MANDO DE PLAYSTATION 4 INALMABRICO GEMBIRD",
+                descripción: "¿Harto de no dar tu 100% en los juegos?, Pues no lo pienses ni dos segundos mas, compra ya y se el mas rápido en cualquier.",
+                precio: "28",
+                imagen: "https://m.media-amazon.com/images/I/518V3l4su0L.jpg",
+                audio: "90.mp4"
+            },
+            {
+                id: 91,
+                nombre: "SOPORTE PARA CPU DE SUELO CON RUEDAS TOOQ UMCS0004-B NEGRO",
+                descripción: "Soporte metálico para PC en el suelo.",
+                precio: "18.50",
+                imagen: "https://pcbox.vtexassets.com/arquivos/ids/458802-853-853/UMCS0004-B_GAL_1.jpg?v=637893272160600000",
+                audio: "91.mp4"
+            },
+            //Redes
+            {
+                id: 92,
+                nombredelacategoria: "Redes",
+                nombre: "AX1500 WI-FI 6 ROUTER GIGABIT ETHERNET",
+                descripción: "¿Necesitas un router mas potente?, Aquí te presentamos el innovador AX1500, siendo el router mas moderno del mercado, con poder inigualable y 4 antenas para captar todas las señales y antenas posibles.",
+                precio: "62",
+                imagen: "https://www.wificanarias.com/shop/1462-large_default/ex141-ax1500-wi-fi-6-router-gigabit-ethernet.jpg",
+                audio: "92.mp4"
+            },
+            {
+                id: 93,
+                nombre: "ADAPTADOR RED USB TP-LINK N300",
+                descripción: "Si te preguntan siempre di que la transmisión inalámbrica es mucho mejor que la transmisión por cable, ¿Por que?, es mas cómodo teniendo incluso mas potencia que por cable (300 Mbps), así que elige ya este ADAPTADOR de RED USB N300 en vez del cable.",
+                precio: "12",
+                imagen: "https://m.media-amazon.com/images/I/71KCj-XLgJL.jpg",
+                audio: "93.mp4"
+            },
+            {
+                id: 94,
+                nombre: "CABLE RED GEMBIRD UTP CAT5E 2M NEGRO",
+                descripción: "¿Tienes que compartir documentos muy importantes y pesados por la red?, No te preocupes, con este cable ETHERNET podrás enviarlo de fórma casi inmediata y ademas te segura que tus datos llegaran sanos y salvos.",
+                precio: "3.50",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1081/10811218/2539-cable-de-red-gembird-pp12-2m-bk-2-m-cat5e-utp-rj-45-negro-contactos-oro-mejor-precio.jpg",
+                audio: "94.mp4"
+            },
+            {
+                id: 95,
+                nombre: "CONECTOR GEMBIRD RJ45 CAT5 BOLSA 50 UDS.",
+                descripción: "¿Eres un manitas o simplemente deseas lo mejor para tu red?, Bueno pues aquí te traigo los nuevos Conectores RJ45 TRANSPARENTES, para aquellos que se les complica el trabajo de crimpar.",
+                precio: "10",
+                imagen: "https://media.cablematic.com/__sized__/images_1000/gb58100-01-thumbnail-1080x1080-70.jpg",
+                audio: "95.mp4"
+            },
+            {
+                id: 96,
+                nombre: "EXTENSOR DE COBERTURA TP-LINK AC1200",
+                descripción: "Este extensor de cobertura es DIFERENTE a otros ya que puedes configurarlo de forma casi automática y que desarrolle por ti esa nueva cobertura gracias a su aplicación web, sencilla de usar.",
+                precio: "34.90",
+                imagen: "https://m.media-amazon.com/images/I/61+R8IFfkHL.jpg",
+                audio: "96.mp4"
+            },
+            {
+                id: 97,
+                nombre: "REPETIDOR STRONG WI-FI 6 AX3000",
+                descripción: "Este repetidor es LA SOLUCIÓN A TODOS TUS PROBLEMAS, perfecto para ampliar la cobertura de un modem o router en cuestión de minutos y con una velocidad de (3000Mbit/s), una barbaridad, y además esta combinado con un sistema led inteligente.",
+                precio: "68",
+                imagen: "https://img.pccomponentes.com/articles/1081/10811924/4371-strong-wi-fi-6-repeater-ax3000-repetidor-wifi-6-3000mbps-especificaciones.jpg",
+                audio: "97.mp4"
+            },
+            {
+                id: 98,
+                nombre: "ROUTER MIKROTIK HEX RB750Gr3",
+                descripción: "Que su diseño no te engañe, es una máquina en velocidad llegando a tener una transferencia de datos de 1000Mbit/s y una frecuencia del procesador de 880 MHz.",
+                precio: "64",
+                imagen: "https://m.media-amazon.com/images/I/710Vt9f1vEL._AC_UF894,1000_QL80_.jpg",
+                audio: "98.mp4"
+            },
+            {
+                id: 99,
+                nombre: "SWITCH TP-LINK 8 PORT GIGA EASY SMART",
+                descripción: "Switch Inteligente con hasta 8 puertos y hasta 4000 entradas MAC",
+                precio: "32",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/18/180765/3465-tp-link-tl-sg108pe-switch-easy-smart-8-puertos-gigabit-con-4-puertos-poe-especificaciones.jpg",
+                audio: "99.mp4"
+            },
+            {
+                id: 100,
+                nombre: "CAJA DE ORGANIZACIÓN EWENT DE CABLE CON SOPORTE 307X135X130MM",
+                descripción: "¿Otra vez te has tropezado con tanto cable suelto?, Mira esta caja de organización EWENT y despreocúpate de que tus cables o tu puedan ser dañados, y tambien viene con un soporte por si necesitas mas espacio.",
+                precio: "16",
+                imagen: "https://m.media-amazon.com/images/I/61NiPBosDRL._AC_UF1000,1000_QL80_.jpg",
+                audio: "100.mp4"
+            },
+            {
+                id: 101,
+                nombre: "FIREWALL ZYXEL USGFLEX200 1800 MBIT/S 450MBIT/S 100GBIT/S",
+                descripción: "Crea tu escudo de seguridad a tu red con este firewall ZYXEL con mas potencia que un cohete y mas seguridad que la casa blanca.",
+                precio: "580",
+                imagen: "https://m.media-amazon.com/images/I/51xFIle3jUL._AC_UF894,1000_QL80_.jpg",
+                audio: "101.mp4"
+            },
+            {
+                id: 102,
+                nombre: "PATCH PANEL LANBERG 24 PUERTOS 1U RACK 19 PARA MODULOS KEYSTONE NEGRO.",
+                descripción: "Prueba ya este nuevo panel de parcheo con hasta 19 puertos de plástico.",
+                precio: "26",
+                imagen: "https://pcbox.vtexassets.com/arquivos/ids/1140492-853-853/PPKS-1024-B_GAL_1.jpg?v=638333167811370000",
+                audio: "102.mp4"
+            },
+            {
+                id: 103,
+                nombre: "WEBCAM LOGITECH BCC950 FHD 1920X1080 PX NEGRO",
+                descripción: "Con un diseño sencillo y una cámara ajustada perfectamente al alcance de los ojos, el BCC950 esta diseñado para pequeñas conferencias gracias a su altavoz omnidireccional y su micrófono que congela el ruido de fondo y hace que destaques por encima de todos en la conferencia.",
+                precio: "195",
+                imagen: "https://storage.googleapis.com/cablematic-1000/images_1000/wx10900-01.jpg",
+                audio: "103.mp4"
+            },
+            //Software
+            {
+                id: 104,
+                nombredelacategoria: "Software",
+                nombre: "EXTENSIÓN GARANTIA LENOVO VSERIES PHP 2Y DEPOT FROM 1Y DEPOT SDC FÍSICA",
+                descripción: "Confía en el seguro de LENOVO, ahora tus productos Lenovo con mas garantía que nunca.",
+                precio: "45",
+                imagen: "https://zecuma.com/300653-home_default/extension-garantia-lenovo-vseries-php-2y-depot-from-1y-depot-sdc-fisica.jpg",
+                audio: "104.mp4"
+            },
+            {
+                id: 105,
+                nombre: "DELL EXTENSIÓN GARANTÍA 1Y BASIC ONSITE TO 3Y PREM SPT",
+                descripción: "Pásate YA a el pack de 1 año de garantía DELL, pruébalo y si deseas mas puedes mejorar tu plan a un PREMIUM de 3 AÑOS.",
+                precio: "110.40",
+                imagen: "https://img.soluziondigital.com/704294-large_default/dell-toml-1os3os-1y-basic-onsite-to-3y-basic-onsite-3-ano-s-.jpg",
+                audio: "105.mp4"
+            },
+            {
+                id: 106,
+                nombre: "PANDA DOME ADVANCED MINIBOX 5LIC 1 AÑO",
+                descripción: "¡PROTÉGETE AHORA!, elige el plan que mas te guste y disfruta de tu vida digital con PANDA DOME.",
+                precio: "35",
+                imagen: "https://www.dmi.es/photo/62/72342/43213242/bg/panda-dome-advanced-minibox-5lic-1ano.jpg",
+                audio: "106.mp4"
+            },
+            {
+                id: 107,
+                nombre: "NORTON 360 DELUXE 25GB ES 1 USER 3 ADVICE 12MO GENERIC1 RSP MM GUM",
+                descripción: "Protégete contra amenazas en tiempo real, con la seguridad avanzada de NORTON 360 DELUXE, este incluye desde VPN propia hasta monitorización y gestión de tus contraseña para que tanto tu como tus seres queridos estén mas seguros que nunca.",
+                precio: "30",
+                imagen: "https://img.dynos.es/img/1cb91/1b000/10223333040102-0.jpg",
+                audio: "107.mp4"
+            },
+            {
+                id: 108,
+                nombre: "MS WINDOWS 11 HOME 64GB DSP",
+                descripción: "Compra ya esta licencia de WINDOWS 11 HOME, para comodidad máxima y tu nuevo Windows 11 home.",
+                precio: "115",
+                imagen: "https://www.coolmod.com/images/product/large/microsoft-windows-11-home-64-bits-dsp-dvd-oem-software.jpg",
+                audio: "108.mp4"
+            },
+            {
+                id: 109,
+                nombre: "MS WINDOWS 11 PRO 64GB DSP",
+                descripción: "Compra ya esta licencia de WINDOWS 11 PRO, para comodidad máxima.",
+                precio: "155",
+                imagen: "https://elsupermercadodelpc.es/272020-large_default/microsoft-windows-11-pro-64b-es-oem-dvd.jpg",
+                audio: "109.mp4"
+            },
+            {
+                id: 110,
+                nombre: "SISTEMA OPERATIVO DELL SERVER 2022 STANDARD 1 LICENCIA",
+                descripción: "Licencia de WINDOWS SERVER 2022 para tener tus datos asegurados y seguros.",
+                precio: "779.99",
+                imagen: "https://thumb.pccomponentes.com/w-530-530/articles/1057/10571169/1680-dell-windows-server-2022-essentials-edition-rok-1-licencia-para-servidores-dell-poweredge-comprar.jpg",
+                audio: "110.mp4"
+            },
+            {
+                id: 111,
+                nombre: "HPE MS WS22 5DEV CAL WW LICSSW22 5DEV CAL WW LTU.",
+                descripción: "Microsoft Windows Server incluye todo tipo de opciones super interesantes como la misma protección integro de su Sistema Operativo, con el, y muchos mas tus datos siempre estarán seguros.",
+                precio: "200",
+                imagen: "https://m.media-amazon.com/images/I/51Ak6idSmmL._AC_UF1000,1000_QL80_.jpg",
+                audio: "111.mp4"
+            },
+        ]
+            const contenedor = document.getElementById("MisProductos");
+            //Mediante esta funcion puedo hacer que se reproduzca el audio, pero una cosa importante, en la segunda línea he realizado algo que no sabía que se podia realizar, los concatenamientos, esto me sirve para que el programa lea la carpeta audios y mas tarde mediante lña función 'archivo', y mas arriba en el array, el programa mismo me selecciona la parte que desea coger. 
+            function reproducirAudio(archivo) {
+                let audio = new Audio('audios/' + archivo);
+                audio.play()
+            }
+
+            let htmlProductos = "";
+
+
+            MisProductos.forEach(function(p) {
+
+                //Ahora debemos de por supuesto distinguir los productos por categorias, ya estan cambiados por id, pero es importantisimo tambien dividirlo en categoias para que nuestro objetivo de que sea sencillo para todo tipo de personas se ha realidad.
+                //Para ello usaremos el if que como se traduce es una funcion de automatización muy muy basica.
+                if (p.nombredelacategoria) {
+                    htmlProductos += `<h1 id="${p.nombredelacategoria}" class="TituloCategoria">${p.nombredelacategoria}</h1>`;
+                }
+
+
+                htmlProductos += `
+                <div class="targetaproductocompleta">
+                    <div class="imagenproducto">
+                        <img src="${p.imagen}">
+                    </div>
+                    <div class="informacionproducto">
+                        <h3 style="font-size:50px">${p.nombre}</h3>
+                        <p onclick="reproducirAudio('${p.audio}')" style="font-size:30px">${p.descripción}</p>
+                       
+                    </div>
+                    <div class="preciosproductos">
+                        <p>Precio: ${p.precio}€</p>
+                    </div>
+                    <button onclick="meteralcarrito(${p.id})"> Añadir al carrito </button>
+                </div>    
+                `;
+            });
+
+            contenedor.innerHTML = htmlProductos;
+
+            
+
+
+
+
+
+                //Ahora pasamos a algo que tuve que buscar y aprender por que no sabia como funcionaria, mi idea es automatizar los productos por su id, arriva si nos fijamos cree un boton que se llamava meter al carrito, y ahora le vamos a meter una función para que sirva para algo mas que un efecto decorativo.
+                function meteralcarrito(idRecibido) {
+                    //Una vez que hemos creado la función (meteralcarrito), debemos de crear la constante de ProductoParaAñadir, que basicamente es que el programa busque el id puesto en la base de datos la función p de paragraph que tenga de nombre id y que por lo tanto ese id se va a llamar tambien como idRecibido, de esta forma el programa ya tiene el id para meter en el carrito
+                    const ProductoParaAñadir = MisProductos.find(p => p.id === idRecibido);
+                    //Ademas para tener un let como bases de datos deremos de meter mas cosas ¿no?, por ejemplo el push que es para meter cosas de forma automatizada en el carrito, esto es la parte mas fundamental.
+                    carrito.push(ProductoParaAñadir);
+                    //Y ya para darle el toque final actualizamos la base de datos, una vez que esta todo metido
+                    actualizarVistaCarrito();
+                }
+
+                //Pasemos ahora con otra función que creamos al finalizar la anterior, efectivamente me refiero a la actualización continua del carrito
+                
+                function actualizarVistaCarrito() {
+                    //Para ello debemos de llamar a el id que he llamado (Lalistadeproductospedidos), para especificar los productos pedidos, pero antes de ello debemos de crear la constante que busque el id mencionado antes.
+                    const listaCarrito = document.getElementById('Lalistadeproductospedidos');
+                    //Ahora necesito recoger el spn puesto arriba que es realmente el precio, para luego recoger todos los precios que estan en el carrito y sumarlo que es lo que hace la próxima función.
+                    const totalSpan = document.getElementById('SumaTotal');
+
+                    //Ahora es lo mas complejo ya que debemos de vaciar completamente la lista por si quieres comprar otra cosa que no se queda nada guardado.
+                    listaCarrito.innerHTML = "";
+                    let cuentaTotal = 0;
+
+                    //Ahora toca el bucle que hace tres cosas
+                    carrito.forEach((p, posicion) => {
+                        //Meter al cuentaTotal todo el dinero que va apareciendo de los diferentes productos. 
+                        cuentaTotal += parseFloat (p.precio);
+                        //Pintar como hicimos en la anterior base de datos todo lo que queremos, que en este caso es la imagen, su titulo, su precio y por ultimo por si se arrepiente un botoncito que quite el producto de la categoria, que mas adelantes crearemos otra funcion para quitarlo.
+                        listaCarrito.innerHTML += `
+                        <div class="itemcarrito">
+                            <img src="${p.imagen}" style="width:10px height:10px object-fit:cover;">
+                            <div style="flex-grow:1;">
+                                <h4 style="margin:0; font-size:14px;">${p.nombre}</h4>
+                                <p style="margin:0;">${p.precio}€</p>
+                            </div>
+                            <button onclick="eliminarProducto(${posicion})" class="botonborrarproducto">X</button>
+                        </div>
+                    `;
+                });
+                //Y poner un boton anteriormente que elimines el producto si no lo deseas, ademas de enseñar el totoal con el siguiente código.
+                totalSpan.innerText = cuentaTotal;
+                //Aqui es el contador de productos que se va metiendo en el carrito, el length del final es para que mida la cantidad de productos, el carrito significa que llama al erray y el inner text como ya he explicado antes, es para insertar en este caso un texto aunque tambien he insertado por innerHTML que significa, meter objetos o cajas dentro de otras cajas u otros objetos.
+                document.getElementById('numproductos').innerText = carrito.length;
+            }
+
+            //Ahora creamos la función de eliminar que yo he llamado a las variable línea ya que podemos contar por productos por línea, por ejemplo en javascript siempre se debe de empezr por la línea 0, pues en este caso el primer producto que ponga sera línea 0 y asi en adelante.
+            function eliminarProducto(línea){
+                // Si se pregunta el splice es una herramienta super super util ya que hace de añadir modificar quitar entro otras cosas en una sola acción, por ejemplo ahora le estoy diciendo que me borre una línea de carrito
+                carrito.splice(línea, 1);
+                //Importante despues de cada acción debemos de actualizar continuamente la lista.
+                actualizarVistaCarrito();
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+//Comentarios JAVASCRIPT
+function ponerTexto() {
+    //1º El programa lee lo que escribio la persona.
+    let texto = document.getElementById("recuadrodecomentario").value;
+    //2º Cambiamos el contenido de nuestor h1 escrito antes por el comentario de la persona que en este caso sere yo
+    document.getElementById("miComentario").innerText = texto;
+}
+
+
+//Ahora vamos a hacer la tabla de comentarios, tengo pensado crear un pop-up en el que nos redirija a la tabla, esta tabla va a tener un funcionamiento paracido a un chat de Whatsapp, es muy simple va a tener un avatar, como un perfil u imagen, una burbuja que contenga el texto, y por ultimo el texto que es el que va a acabar siendo el comentario.
+
+
+function ponerTexto() {
+    let input = document.getElementById("recuadrodecomentario")
+    let contenedor = document.getElementById("MiMurito")
+
+
+    if (input.value.trim() !== "") {
+
+
+        //Ahora voy a hacer lo mismo que cuando yo hice para la base de datos de productos, solo que ahora es una base de datos destinados a la tablita de comentarios.
+       
+        let mensajedeusuario = `
+                <div class="mensajechat">
+                    <div class="avatar">
+                        <img src="https://w7.pngwing.com/pngs/741/68/png-transparent-user-computer-icons-user-miscellaneous-cdr-rectangle-thumbnail.png"></div>
+                    <div class="recuadro">${input.value}</div>
+                </div>
+                `;
+
+
+                //De acuerdo una vez aqui ya tendriamos todo casi resuelto, ya que ya hemos hecho tanto la plantilla del mensaje, como el "input.value", para poner el mensaje dentro.
+
+
+                //Ahora toca Hacer que desde la web puedas ver el mensaje y sobre too diferenciarlo de otros usuarios, usando algo muy sencillo como crear una caja que llamaremos como antes hemos visto ("contenedor.innerHTML"), y añadiendo el nuevo mensaje que llamaremos tan simple como (mensajedeusuario),ademas ya hemos visto en filas anteriores que seleccionamos este nombre como plantilla, ya se que no me he complicado mucho en el nombre pero para mi y la presentación es mas comodo, ademas el codigo es muy sencillo.
+               
+                contenedor.innerHTML = mensajedeusuario + contenedor.innerHTML
+
+
+                //Básicamente el inner escribe en vez del div que pusimos en el html, es lo que vamos a querer meter y el mas con otra vez el inner, significa que el texto ira hacia arriba de la pagina para que le de ese toque a Whatsapp.
+
+
+                //Y ya esta, pero antes limpiamos por que no queremos que tenga que borrar todo el mensaje y escribir el nuevo
+
+
+                input.value = "";
+       
+    }
+}
+    function interruptorcarrito() {
+        const elCarrito = document.getElementById('Carrito');
+        elCarrito.classList.toggle('activo');
+    }
+
+    //Ahora vamos a hacerla funcional, por que si, esta muy chula que al añadir aparezca con su foto, con esto y lo otro, pero lo realmente bueno es que sea funcional con codigos y funciones distintas a otras web para que sea algo mas innovador y sencilla para las personas.
+    function finalizarCompra(){
+        //Primero hay que asegurar que tenemos algo que pagar si no, seria una autentica tonteria.
+        if (carrito.length === 0) {
+            alert("!Oye¡, no has añadido ningun producto, por favor añade alguno antes de pagar, mediante el boton 'Añadir Productos'.");
+            return;
+        }
+
+    //El siguiente paso es mas complejo, ya que es mas matematicas, este paso es crear el codigo único por cliente.
+    const codigoPedido = Math.floor(Math.random() * 900) + 100;
+    
+    //Ahora debemos de crear al igual que antes otra constante pero esta vez es para saber la cifra exacta del pedido.
+    const Total = document.getElementById('SumaTotal').innerText;
+
+    //Ahora hacemos un mini resumen de la compra para que tanto el tendedero cuando el cliente le enseñe el codigo, sepa que productos ha comprado y su codigo de reseña.
+    let listaResumen = "";
+    carrito.forEach(p => {
+        listaResumen += `<li>${p.nombre}</li>`
+    });
+
+    //Ahora habia pensado de borrar lo que haya en el carrit, e insertar el resumen, para ello sobreescribiremos en el id de (Lalistadeproductospedidos).
+    const plantillaresumen = document.getElementById('Lalistadeproductospedidos');
+
+    //Aqui esta toda la plantilla del resumen, ademas he aprendido a usar la función hr que sencillamente e smuy similar a el hr pero de una forma mas profesional y encima entre parrafos traza una línea fina. 
+    plantillaresumen.innerHTML = `
+    <div style="text-align:center; border:2px; padding:20px; background-color:white; color:black; font-style:Arial">
+        <h2>¡Gracias por confiar en nosotros!</h2>
+        <p>Tu código de pedido es: <strong>#${codigoPedido}</strong></p>
+        <hr>
+        <ul style="text-align:center; font-size:14px;">
+            ${listaResumen}
+        </ul>
+        <hr>
+        <p>TOTAL A PAGAR: ${Total}€</p>
+        <p>Por favor, presenta este código en el mostrador de nuestra tienda física mas cercana, si lo necesita, puede hablar con nuestro soporte en la sección <strong>ChatBot</strong>, o puede acceder a este enlace, para ver el funcionamiento de los pedidos.</p>
+        <a href="Ayuda Pedidos.pdf" download style="color:blue;"> Si necesitas ayuda pincha aquí</a>
+    </div>
+    `
+    //Una vez hecho todo esto ya solo queda hacer lo realizado anteriormente, limpiar y esperar el próximo pedido.
+    carrito = [];
+
+    }
+
+</script>
+</div>
+</body>
+</html>
